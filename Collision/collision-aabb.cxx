@@ -40,10 +40,10 @@ bool CLD_Util::Collision_AABB::aabbCheck(CLD_Util::Objects::Box a, CLD_Util::Obj
 //Returns:
 //	float:			Time (0, 1) of collision (1 if
 //				no collision)
-void aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d<float, float> vA, 
-		    CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d<float, float> vB, 
-		    CLD_Util::Objects::vec2d<float, float>& normalA,
-		    CLD_Util::Objects::vec2d<float, float>& normalB) {
+void aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d vA, 
+		    CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d vB, 
+		    CLD_Util::Objects::vec2d& normalA,
+		    CLD_Util::Objects::vec2d& normalB) {
 	//not yet written
 }
 
@@ -59,8 +59,8 @@ void aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d<float, fl
 //Returns:
 //	bool:			True if broadphase collision is
 //				detected
-bool aabbBroadphaseCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d<float, float> vA, 
-		         CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d<float, float> vB); {
+bool aabbBroadphaseCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d vA, 
+		         CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d vB) {
 	//not yet written
 }
 

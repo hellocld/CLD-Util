@@ -5,14 +5,14 @@
 // Description:		A collection of simple AABB collision check utilities
 //
 
-#ifndef CLD_UTIL_COLLISION_H
-#define CLD_UTIL_COLLISION_H
+#ifndef CLD_UTIL_COLLISION_AABB_H
+#define CLD_UTIL_COLLISION_AABB_H
 
 #include "../Objects/box.h"
 #include "../Objects/vector.h"
 
-namespace CLD {
-	namespace Collision {
+namespace CLD_Util {
+	namespace Collision_AABB {
 		//---------------------------------------------------------------------------
 		//Function:			aabbCheck()
 		//Description:			simple AABB check

@@ -42,20 +42,15 @@ namespace CLD_Util {
 				    CLD_Util::Objects::vec2d& normalA,
 				    CLD_Util::Objects::vec2d& normalB);
 	
-		//---------------------------------------------------------------------------
-		//Function:			aabbBroadphaseCheck()
-		//Description:			Does a broadphase check between
-		//				two moving objects
+		///---------------------------------------------------------------------------
+		//Function:			getBroadphaseBox
+		//Description:			Generates a box for broadphase AABB testing
 		//Arguments:
-		//	Box a:			Box of the first object
-		//	vec2d vA:		Velocity of the first object
-		//	Box b:			Box of the second object
-		//	vec2d vB:		Velocity of the second object
+		//	Box a:			Box of the object
+		//	vec2d vA:		Velocity of the object
 		//Returns:
-		//	bool:			True if broadphase collision is
-		//				detected
-		bool aabbBroadphaseCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d vA, 
-				         CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d vB);
+		//	Box:			A Broadphase Box
+		CLD_Util::Objects::Box getBroadphaseBox(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d vA);
 	}
 }
 

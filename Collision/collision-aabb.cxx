@@ -57,7 +57,17 @@ void CLD_Util::Collision_AABB::aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util
 	CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d vB, 
 	CLD_Util::Objects::vec2d& normalA,
 	CLD_Util::Objects::vec2d& normalB) {
-	//not yet written
+	
+	//do a quick broadphase check to see if anything's collided
+	if(aabbCheck(getBroadphaseBox(a, vA), getBroadphaseBox(b, vB))) {
+		//do collision checking stuff
+	} else {
+		//no collision; set all the vectors to 0
+		normalA->x = 0;
+		normalA->y = 0;
+		normalB->x = 0;
+		normalB->y = 0;
+	}
 }
 
 //---------------------------------------------------------------------------

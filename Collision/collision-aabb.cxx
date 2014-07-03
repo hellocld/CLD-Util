@@ -6,7 +6,7 @@
 //
 
 #include "collision-aabb.h"
-#include <stdlib.h>
+#include <cmath>
 
 //---------------------------------------------------------------------------
 //Function:			aabbCheck()
@@ -17,13 +17,26 @@
 //Returns:
 //	bool:			True if collision is detected
 bool CLD_Util::Collision_AABB::aabbCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::Box b) {
-	//really just a big if statement to see if the future positions of
-	//either box are overlapping
-	if(abs((a.x + a.w)-(b.x + b.w)) < (a.w + b.w) && abs((a.y + a.h) - (b.y + b.h)) < (a.h + b.h))
-		//collision detected, return true
+	//lets get the centers of the objects
+	CLD_Util::Objects::vec2d centerA;
+	CLD_Util::Objects::vec2d centerB;
+
+	centerA.x = a.x + a.w/2;
+	centerA.y = a.y + a.h/2;
+	
+	centerB.x = b.x + b.w/2;
+	centerB.y = b.y + b.h/2;
+
+	//check for overlap
+	//If the total distance between the furthest edges of each box along one
+	//axis is shorter than the total width of both boxes, there's an overlap
+	//on that axis. If both axis contain an overlap, that means there's a
+	//collision
+	if(std::abs(centerA.x - centerB.x) + (a.w + b.w)/2 < a.w + b.w && std::abs(centerA.y - centerB.y) + (a.h + b.h)/2 < a.h + b.h) 
 		return true;
-	//no collision, return false
+
 	return false;
+	
 }
 
 //---------------------------------------------------------------------------

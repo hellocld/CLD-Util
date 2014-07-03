@@ -53,30 +53,29 @@ bool CLD_Util::Collision_AABB::aabbCheck(CLD_Util::Objects::Box a, CLD_Util::Obj
 //Returns:
 //	float:			Time (0, 1) of collision (1 if
 //				no collision)
-void aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d vA, 
-		    CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d vB, 
-		    CLD_Util::Objects::vec2d& normalA,
-		    CLD_Util::Objects::vec2d& normalB) {
+void CLD_Util::Collision_AABB::aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d vA, 
+	CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d vB, 
+	CLD_Util::Objects::vec2d& normalA,
+	CLD_Util::Objects::vec2d& normalB) {
 	//not yet written
 }
 
 //---------------------------------------------------------------------------
-//Function:			aabbBroadphaseCheck()
-//Description:			Does a broadphase check between
-//				two moving objects
+//Function:			getBroadphaseBox
+//Description:			Generates a box for broadphase AABB testing
 //Arguments:
-//	Box a:			Box of the first object
-//	vec2d vA:		Velocity of the first object
-//	Box b:			Box of the second object
-//	vec2d vB:		Velocity of the second object
+//	Box a:			Box of the object
+//	vec2d vA:		Velocity of the object
 //Returns:
-//	bool:			True if broadphase collision is
-//				detected
-bool aabbBroadphaseCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d vA, 
-		         CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d vB) {
-	//not yet written
-}
-
-
+//	Box:			A Broadphase Box
+CLD_Util::Objects::Box CLD_Util::Collision_AABB::getBroadphaseBox(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d vA) {
+	CLD_Util::Objects::Box box;
+	//all generated value depend on whether or not velocity is negative or
+	//positive in either axis
+	box.x = vA.x > 0 ? a.x : a.x + vA.x;
+	box.y = vA.y > 0 ? a.y : a.y + vA.y;
+	box.w = vA.x > 0 ? a.w + vA.x : a.w - vA.x;
+	box.h = vA.y > 0 ? a.h + vA.y : a.h - vA.y;
 	
-
+	return box;	
+}

@@ -28,19 +28,14 @@ namespace CLD_Util {
 		//Description:			AABB sweep check
 		//Arguments:
 		//	Box a:			Box of first object
-		//	vec2d vA:		Velocity of first object
+		//	vec2d v:		Velocity of first object
 		//	Box b:			Box of second object
-		//	vec2d vB:		Velocity of second object
-		//	vec2d& normalA:		Collision normals of first object
-		//	vec2d& normalB:		Collision normals of second
-		//				object
+		//	vec2d& normal:		Collision normals of object
 		//Returns:
 		//	float:			Time (0, 1) of collision (1 if
 		//				no collision)
-		void aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d vA, 
-				    CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d vB, 
-				    CLD_Util::Objects::vec2d& normalA,
-				    CLD_Util::Objects::vec2d& normalB);
+		void aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d v, 
+				    CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d& normal);
 	
 		///---------------------------------------------------------------------------
 		//Function:			getBroadphaseBox

@@ -44,29 +44,87 @@ bool CLD_Util::Collision_AABB::aabbCheck(CLD_Util::Objects::Box a, CLD_Util::Obj
 //Description:			AABB sweep check
 //Arguments:
 //	Box a:			Box of first object
-//	vec2d vA:		Velocity of first object
+//	vec2d v:		Velocity of first object
 //	Box b:			Box of second object
-//	vec2d vB:		Velocity of second object
-//	vec2d& normalA:		Collision normals of first object
-//	vec2d& normalB:		Collision normals of second
-//				object
+//	vec2d& normal:		Collision normals of object
 //Returns:
 //	float:			Time (0, 1) of collision (1 if
 //				no collision)
-void CLD_Util::Collision_AABB::aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d vA, 
-	CLD_Util::Objects::Box b, CLD_Util::Objects::vec2d vB, 
-	CLD_Util::Objects::vec2d& normalA,
-	CLD_Util::Objects::vec2d& normalB) {
+void CLD_Util::Collision_AABB::aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d v, CLD_Util::Objects::Box b, 
+	CLD_Util::Objects::vec2d& normal) {
 	
 	//do a quick broadphase check to see if anything's collided
 	if(aabbCheck(getBroadphaseBox(a, vA), getBroadphaseBox(b, vB))) {
-		//do collision checking stuff
+		float xInvEntry, yInvEntry;
+		float xInvExit, yInvExit;
+
+		if(v.x > 0) {
+			xInvEntry = b.x - (a.x + a.w);
+			xInvExit = (b.x + b.w) - a.x;
+		} else {
+			xInvEntry = (b.x + b.w) - a.x;
+			xInvExit = b.x - (a.x + a.w);
+		}
+		if(v.y > 0) {
+			yInvEntry = b.y - (a.y + a.h);
+			yInvExit = (b.y + h.h) - a.y;
+		} else {
+			yInvEntry = (b.y + b.h) - a.y;
+			yInvExit = b.y - (a.y + a.h);
+		}
+
+		float xEntry, yEntry;
+		float xExit, yExit;
+
+		if(v.x == 0) {
+			xEntry = -std::numeric_limits<float>::infinity();
+			xExit = std::numeric_limits<float>::infinity();
+		} else {
+			xEntry = xInvEntry / v.x;
+			xExit = xInvExit / v.x;
+		}
+
+		if(v.y == 0) {
+			yEntry = -std::numeric_limits<float>::infinity();
+			yExit = std::numeric_limits<float>::infinity();
+		} else {
+			yEntry = yInvEntry / v.y;
+			yExit = yInvExit / v.y;
+		}
+
+		float entryTime = std::max(xEntry, yEntry);
+		float exitTime = std::min(xExit, yExit);
+
+		if(entryTime > exitTime || xEntry < 0 && yEntry < 0 || xEntry > 1 || yEntry > 1) {
+			normal.x = 0;
+			normal.y = 0;
+			return 1;
+		} else {
+			if(xEntry > yEntry) {
+				if(xInvEntry < 0) {
+					normal.x = 1;
+					normal.y = 0;
+				} else {
+					normal.x = -1;
+					normal.y = 0;
+				}
+			} else {
+				if(yInvEntry < 0) {
+					normal.x = 0;
+					normal.y = 1;
+				} else {
+					normal.x = 0;
+					normal.y = -1;
+				}
+			}
+			return entryTime;
+		}
+
 	} else {
 		//no collision; set all the vectors to 0
-		normalA->x = 0;
-		normalA->y = 0;
-		normalB->x = 0;
-		normalB->y = 0;
+		normal.x = 0;
+		normal.y = 0;
+		return 1;
 	}
 }
 

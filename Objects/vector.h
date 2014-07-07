@@ -8,6 +8,8 @@
 #ifndef CLD_UTIL_OBJECTS_VECTOR_H
 #define CLD_UTIL_OBJECTS_VECTOR_H
 
+#include <iostream>
+
 namespace CLD_Util {
 	namespace Objects {
 		struct vec2d {
@@ -48,12 +50,14 @@ namespace CLD_Util {
 				return vec2d(rx, ry);
 			}
 
-			friend ostream &operator<< (ostream &out, vec2d v) {
-				out<<"x:\t"<<v.x<<"\n";
-				out<<"y:\t"<<v.y<<"\n";
-			}
+			friend std::ostream& operator<< (std::ostream& out, const vec2d& v);
 
 		};
+
+		std::ostream& operator<< (std::ostream& out, const vec2d& v) {
+			out<<"x:\t"<<v.x<<"\n";
+			out<<"y:\t"<<v.y<<"\n";
+		}
 	}
 }
 

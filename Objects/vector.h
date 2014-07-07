@@ -50,6 +50,31 @@ namespace CLD_Util {
 				return vec2d(rx, ry);
 			}
 
+			vec2d& operator*= (const vec2d& other) {
+				this->x *= other.x;
+				this->y *= other.y;
+				return *this;
+			}
+
+			vec2d& operator*= (float i) {
+				this->x *= i;
+				this->y *= i;
+				return *this;
+			}
+			
+			vec2d& operator/= (const vec2d& other) {
+				this->x /= other.x;
+				this->y /= other.y;
+				return *this;
+			}
+
+			vec2d& operator/= (float i) {
+				this->x /= i;
+				this->y /= i;
+				return *this;
+			}
+
+
 			friend std::ostream& operator<< (std::ostream& out, const vec2d& v);
 
 		};

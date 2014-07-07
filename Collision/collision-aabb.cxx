@@ -50,7 +50,7 @@ bool CLD_Util::Collision_AABB::aabbCheck(CLD_Util::Objects::Box a, CLD_Util::Obj
 //Returns:
 //	float:			Time (0, 1) of collision (1 if
 //				no collision)
-void CLD_Util::Collision_AABB::aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d v, CLD_Util::Objects::Box b, 
+float CLD_Util::Collision_AABB::aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Util::Objects::vec2d v, CLD_Util::Objects::Box b, 
 	CLD_Util::Objects::vec2d& normal) {
 	
 	//do a quick broadphase check to see if anything's collided

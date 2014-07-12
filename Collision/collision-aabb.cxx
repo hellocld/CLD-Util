@@ -6,8 +6,12 @@
 //
 
 #include "collision-aabb.h"
-#include <cmath>
+#include "../Objects/box.h"
+#include "../Objects/vector.h"
+#include "../Tools/boxTools.h"
 
+#include <cmath>
+#include <limits>
 //---------------------------------------------------------------------------
 //Function:			aabbCheck()
 //Description:			simple AABB check
@@ -54,7 +58,7 @@ float CLD_Util::Collision_AABB::aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Uti
 	CLD_Util::Objects::vec2d& normal) {
 	
 	//do a quick broadphase check to see if anything's collided
-	if(aabbCheck(getBroadphaseBox(a, vA), getBroadphaseBox(b, vB))) {
+	if(aabbCheck(getBroadphaseBox(a, v), b)) {
 		float xInvEntry, yInvEntry;
 		float xInvExit, yInvExit;
 
@@ -67,7 +71,7 @@ float CLD_Util::Collision_AABB::aabbSweepCheck(CLD_Util::Objects::Box a, CLD_Uti
 		}
 		if(v.y > 0) {
 			yInvEntry = b.y - (a.y + a.h);
-			yInvExit = (b.y + h.h) - a.y;
+			yInvExit = (b.y + b.h) - a.y;
 		} else {
 			yInvEntry = (b.y + b.h) - a.y;
 			yInvExit = b.y - (a.y + a.h);

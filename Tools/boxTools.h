@@ -22,7 +22,7 @@ namespace CLD_Util {
 		// Returns:
 		// 	SDL_Rect:	a SDL_Rect object
 		//this only gets compiled if SDL has been included
-		SDL_Rect boxToSDLRect (CLD_Util::Objects::Box box) {
+		inline SDL_Rect boxToSDLRect (CLD_Util::Objects::Box box) {
 			SDL_Rect sBox;
 			sBox.x = box.x;
 			sBox.y = box.y;
@@ -40,9 +40,9 @@ namespace CLD_Util {
 		// 	vec2d vector:	Amount to move the box
 		// Returns:
 		// 	none
-		void boxMove(CLD_Util::Objects::Box& box, CLD_Util::Objects::vec2d vector) {
-			box->x += vector.x;
-			box->y += vector.y;
+		inline void boxMove(CLD_Util::Objects::Box& box, CLD_Util::Objects::vec2d vector) {
+			box.x += vector.x;
+			box.y += vector.y;
 		}
 
 		// Function:		boxResize()
@@ -52,9 +52,11 @@ namespace CLD_Util {
 		// 	vec2d resize:	New dimensions
 		// Returns:
 		// 	none
-		void boxResize(CLD_Util::Objects::Box& box, CLD_Util::Objects::vec2d resize) {
-			box->w = resize.x;
-			box->h = resize.y;
+		inline void boxResize(CLD_Util::Objects::Box& box, CLD_Util::Objects::vec2d resize) {
+			box.w = resize.x;
+			box.h = resize.y;
 		}
 	}
 }
+
+#endif

@@ -11,6 +11,10 @@
 namespace CLD_Util {
 	namespace Objects {
 		struct Box {
+			Box (float xx, float yy, float ww, float hh) :
+				x(xx), y(yy), w(ww), h(hh) {}
+			Box ()
+				:x(0), y(0), w(1), h(1) {}
 			float x;
 			float y;
 			float w;

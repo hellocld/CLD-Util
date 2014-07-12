@@ -15,6 +15,8 @@ namespace CLD_Util {
 		struct vec2d {
 			vec2d(float xx, float yy)
 				:x(xx), y(yy){};
+			vec2d()
+				:x(0), y(0){};
 			float x;
 			float y;
 
@@ -75,14 +77,9 @@ namespace CLD_Util {
 			}
 
 
-			friend std::ostream& operator<< (std::ostream& out, const vec2d& v);
 
 		};
 
-		std::ostream& operator<< (std::ostream& out, const vec2d& v) {
-			out<<"x:\t"<<v.x<<"\n";
-			out<<"y:\t"<<v.y<<"\n";
-		}
 	}
 }
 

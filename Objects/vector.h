@@ -9,7 +9,7 @@
 #define CLD_UTIL_OBJECTS_VECTOR_H
 
 #include <iostream>
-
+#include <cmath>
 namespace CLD_Util {
 	namespace Objects {
 		struct vec2d {
@@ -76,7 +76,16 @@ namespace CLD_Util {
 				return *this;
 			}
 
+			float length() {
+				float l = sqrt((x*x) + (y*y));
+				return l;
+			}
 
+			vec2d normalize() {
+				vec2d n;
+				n = (*this)/length();
+				return n;
+			}
 
 		};
 
